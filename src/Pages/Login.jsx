@@ -1,22 +1,34 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { MdAccountBox, MdManageAccounts, MdVisibility,MdVisibilityOff } from 'react-icons/md'
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom';
 import { auth } from '../firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 const Login = () => {
+    const navigate=useNavigate();
     const [hide,setHide]=useState(false);
     const [Error, setError] = useState(false)
+    const {CurrentUser,setCurrentUser}=useContext(AuthContext);
     const [inputData,setInputData]=useState({
         username:"",
         password:"",
     })
-
     const handleLogin=async(e)=>{
         e.preventDefault()
-        const user=await signInWithEmailAndPassword(auth,inputData.username,inputData.password)
-       
+        try
+        {
+            await signInWithEmailAndPassword(auth,inputData.username,inputData.password)
+            .then((userData)=>setCurrentUser(userData))
+            .catch((err)=>console.log("erroro from login"+err))
+            console.log(CurrentUser)
+            navigate("/")
+        }
+        catch(err)
+        {
+            console.log(err)
+        }
   };
 
   return (
@@ -42,6 +54,7 @@ const Login = () => {
         
         <button className="bg-blue-500 h-10 rounded-md text-white my-auto" type='submit'>Submit</button>
         <span className='text-center'>Not a user?<NavLink to={"/register"}>Register here</NavLink></span>
+        {Error && <span>Something went wrong</span>}
         </form>
     </div>
   )

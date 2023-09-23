@@ -20,39 +20,34 @@ const Register = () => {
     e.preventDefault();
     const storage2 = storage;
     try {
-      //Create user
+
       const res = await createUserWithEmailAndPassword(auth, userInfo.email, userInfo.password);
 
-      //Create a unique image name
       const date = new Date().getTime();
       const storageRef = ref(storage2, `${userInfo.username + date}`);
 
       await uploadBytesResumable(storageRef,userInfo.file).then(() => {
         getDownloadURL(storageRef).then(async (downloadURL) => {
           try {
-            //Update profile
             await updateProfile(res.user, {
               displayName:userInfo.username,
               photoURL: downloadURL,
             });
-            //create user on firestore
             await setDoc(doc(db, "users", res.user.uid), {
               uid: res.user.uid,
               displayName:userInfo.username,
               email:userInfo.email,
               photoURL: downloadURL,
             });
-
-            //create empty user chats on firestore
             await setDoc(doc(db, "userChats", res.user.uid), {});
-            // navigate("/");
+            navigate("/");
           } catch (err) {
             console.log(err);
             setError(true);
-            // setLoading(false);
           }
         });
       });
+      navigate("/")
     } catch (err) {
       setError(true);
       
