@@ -25,18 +25,16 @@ const Chats = () => {
     prev.chatId=CurrentUser.uid>userInfo.uid.uid?CurrentUser.uid+userInfo.uid : userInfo.uid+CurrentUser.uid
     return {...prev}
    })
-   console.log(chatUser)
   }
-  console.log(chatUser)
 
-  return  (Chats && Object.entries(Chats).map((chat)=><div className="chatGrid border-b-2 border-gray-200 p-1 " key={chat[0]} onClick={()=>handleSelect(chat[1].userInfo)}>
+  return  (Chats && Object.entries(Chats).map((chat)=><div className="chatGrid border-b-2 border-gray-500 p-2 " key={chat[0]} onClick={()=>handleSelect(chat[1].userInfo)}>
   <div className="pic-div" >
     <img
     src={chat[1]?.userInfo?.photoURL}
       className="profile-pic w-20 h-20"
     />
   </div>
-  <h1 className="font-semibold  text-base">{chat[1]?.userInfo?.displayName}</h1>
+  <h1 className="font-semibold text-white text-base">{chat[1]?.userInfo?.displayName}</h1>
   <span className="text-gray-500">{chat[1]?.lastMessage?.message}</span>
 </div>))
 };

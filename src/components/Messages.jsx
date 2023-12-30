@@ -9,16 +9,16 @@ const Messages = () => {
   
   return user.uid ? (
     <div className="relative">
-      <div className="flex h-16 justify-between p-3 bg-blue-500">
-        <div>
-          <p className="text-lg font-medium">{user.displayName}</p>
+      <div className="flex h-16 justify-between p-2 text-white font-semibold bg-black border-b-2">
+        <div className="font-semibold">
+          <p className="text-lg font-semibold">{user.displayName}</p>
           <span>Active</span>
         </div>
-        <ul className="w-28 text-[#435F73] font-thin text-3xl flex items-center justify-between">
-          <li className="bg-[#F0F4F8] p-2 rounded-full ">
+        <ul className="w-28 text-white font-thin text-3xl flex items-center gap-4">
+          <li className="rounded-full ">
             <BiVideo />
           </li>
-          <li className="bg-[#F0F4F8] rounded-full p-2">
+          <li className="rounded-full p-1">
             <BiPhoneCall />
           </li>
         </ul>

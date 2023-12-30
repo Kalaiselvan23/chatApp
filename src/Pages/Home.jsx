@@ -6,9 +6,8 @@ import { useContext } from 'react'
 import { ChatContext } from '../context/ChatContext'
 
 const Home = () => {
-  const {chatUser, setchatUser}=useContext(ChatContext)
   return (
-    <div className='grid grid-cols-home'>
+    <div className='grid grid-cols-home bg-black'>
     <Sidebar/>
     <ChatLists/>
     <Messages />

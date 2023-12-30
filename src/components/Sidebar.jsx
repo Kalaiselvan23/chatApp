@@ -9,10 +9,11 @@ import { AuthContext } from '../context/AuthContext'
 const Sidebar = () => {
   const {CurrentUser}=useContext(AuthContext)
   return (
-    <div className="bg-[#181F2E] h-[100vh] w-16 pt-4 relative">
+    <div className="bg-black border-r-2 h-[100vh] w-16 pt-4 relative">
     <div className="rounded-full profile-pic mb-8">
     <img src={CurrentUser.photoURL}
       className='rounded-full'
+      alt="profile-pic"
     />
     </div>
     <ul className='flex flex-col menu h-72 justify-around items-center text-2xl text-white'>

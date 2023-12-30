@@ -74,11 +74,11 @@ const ChatLists = () => {
   };
 
   return (
-    <div className="col-start-2 p-4 bg-[#EBF4FB]">
-      <div>
-        <div className=" flex items-center border-[2px] rounded-2xl border-black">
+    <div className="col-start-2 p-4 bg-black">
+      <div className="border-l-500">
+        <div className="flex items-center border-[2px] rounded-2xl border-black">
           <input
-            className="border-none outline-none h-10 p-2  w-full mr-4 rounded-2xl"
+            className="outline-none h-10 p-2 bg-black border-2 text-white border-gray-500 w-full mr-4 rounded-2xl"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             onKeyDown={(e) => (e.key === "Enter" ? handleSubmit() : null)}

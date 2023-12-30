@@ -47,12 +47,6 @@ const MessageInput = () => {
       });
     } else {
       const chatRef = doc(db, "chats", chatUser.chatId);
-      console.log(chatUser.chatId);
-
-      // const q = query(collection(db, "chats"), where("capital", "==", chatUser.chatId));
-      // await getDocs(chatRef)
-      //   .then((doc) => console.log(doc.data()))
-      //   .catch((err) => console.log(err));
       await updateDoc(chatRef, {
         messages: arrayUnion({
           id: uuid(),
@@ -77,27 +71,27 @@ const MessageInput = () => {
     setMessage("");
   };
   return (
-    <div className="bg-blue-500 absolute h-16 gap-2 bottom-0 w-full flex p-3">
+    <div className="absolute h-16 gap-2 bottom-0 w-full flex p-3 bg-black border-t-gray-400">
       <input
-        className="w-full text-black p-2 rounded-md focus:outline-none"
+        className="w-full text-white bg-black border-gray-500 p-2 rounded-md focus:outline-none outline-1 border-2 border-black"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       />
       <input type="file" id="attachment" className="hidden" />
-      <label htmlFor="attachment">
+      <label htmlFor="attachment" className="flex gap-4 justify-center">
         <button className="text-2xl text-gray-600">
           <GrAttachment />
         </button>
-      </label>
       {message ? (
-        <button className="text-2xl" onClick={() => handleSend()}>
-          <IoMdSend />
+        <button className="text-2xl text-white" onClick={() => handleSend()}>
+          <IoMdSend className="text-white" />
         </button>
       ) : (
         <button>
-          <FaMicrophone className="text-2xl" />
+          <FaMicrophone className="text-2xl text-white" />
         </button>
       )}
+      </label>
     </div>
   );
 };

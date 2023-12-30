@@ -41,7 +41,6 @@ function App() {
               exact
               element={
                 <ProtectedRoute />
-                // <Home/>
               }
             />
             <Route path="/login" element={<Login />} />
